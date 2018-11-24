@@ -11,6 +11,7 @@ class Barco {
 		municiones = unasMuniciones
 		tripulacion = unaTripulacion
 		bando = unBando
+		self.bonus()
 	}
 	
 	method capitan() = tripulacion.max({ unTripulante => unTripulante.poderDeMando() })
@@ -57,7 +58,7 @@ class Barco {
 		tripulacion = tripulacion.filter({ unTripulante => unTripulante.energia() > 20 })
 	}
 	
-	method obtenerBonus(){ bando.bonus(self) }
+	method bonus(){ bando.bonus(self) }
 	
 	method recibirBonusDeArmadaInglesa(){ municiones += municiones*0.3 }
 	
@@ -65,5 +66,8 @@ class Barco {
 	
 	method recibirBonusDeArmadaDelHolandesErrante(){ tripulacion += tripulacion }
 
-	method cambiarDeBando(nuevoBando){ bando = nuevoBando}
+	method cambiarDeBando(nuevoBando){
+		bando = nuevoBando
+		self.bonus()
+	}
 }
